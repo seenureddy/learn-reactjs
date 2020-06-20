@@ -13,7 +13,7 @@ var port = process.env.webpackDevPort || 3000;
 
 module.exports = {
   mode: 'development',
-  entry: './src/index_loops-01.js',
+  entry: './src/index_state-02.js',
   devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'build'), // change this
