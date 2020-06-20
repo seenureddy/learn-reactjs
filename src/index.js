@@ -12,6 +12,10 @@ class Welcome extends React.Component {
             <>
                 <OurHeader />
                 <TimeArea />
+                <ul>
+                    <Pet name="Meowsalot" species="cat" age="5" />
+                    <Pet name="BarkSalot" species="dog" age="10"/>
+                </ul>
             </>
         );
     }
@@ -23,5 +27,9 @@ function TimeArea () {
     );
 }
 
-ReactDOM.render(<Welcome />, document.getElementById("root"));
+function Pet (props) {
+    return <li> The {props.name} is a {props.species} and {props.age} is year old. </li>;
+}
 
+
+ReactDOM.render(<Welcome />, document.getElementById("root"));
