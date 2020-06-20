@@ -1,19 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+const useState = React.useState;
+
+function OurHeader () {
+    return <h1> Our Amazing App Header</h1>;
+}
+
+
+function TimeArea () {
+    const [theTime, setTheTime] = useState(new Date().toLocaleString());
+    setTimeout(function () {setTheTime(new Date().toLocaleString());}, 1000);
+    return (
+        <p> The current time {theTime} </p>
+    );
+}
+
 
 class App extends React.Component {
     render () {
         return (
             <>
-                <h1> Our Amazing App </h1>
-                <p> The current time {new Date().toLocaleString()} </p>
+                <OurHeader />
+                <TimeArea />
             </>
         );
     }
 }
 
-setInterval(function () {
-    ReactDOM.render(<App />, document.getElementById("root"));
-}, 1000);
-
+ReactDOM.render(<App />, document.getElementById("root"));
