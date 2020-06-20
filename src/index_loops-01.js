@@ -31,9 +31,7 @@ class App extends React.Component {
                 <OurHeader />
                 <TimeArea />
                 <ul>
-                    {pets.map(function (pet) {
-                        return <Pet name={pet.name} species={pet.species} age={pet.age} key={pet.id} />;
-                    })}
+                    {pets.map(pet => <Pet name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)};
                 </ul>
             </>
         );
