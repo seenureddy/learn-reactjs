@@ -13,7 +13,7 @@ var port = process.env.webpackDevPort || 3000;
 
 module.exports = {
   mode: 'development',
-  entry: './src/index_event_handel-03.js',
+  entry: './src/index_forms-04.js',
   devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'build'), // change this
@@ -27,8 +27,14 @@ module.exports = {
   },
   module: {
     rules: [
-        { test: /\.(js|jsx)$/, exclude: /node_modules/, use: [{loader: "babel-loader", options: {
-          presets: ["@babel/preset-react", "@babel/preset-env"]}}, {loader: "eslint-loader"},
+        { test: /\.(js|jsx)?$/, exclude: /node_modules/, use: [{loader: "babel-loader", options: {
+          presets: ["@babel/preset-react", "@babel/preset-env"],
+          plugins: [
+            '@babel/proposal-class-properties', '@babel/plugin-proposal-object-rest-spread',
+            '@babel/plugin-syntax-dynamic-import', '@babel/plugin-transform-runtime'
+            ]
+          }},
+          {loader: "eslint-loader"},
         ]},
         { test: /\.css$/, use: 'css-loader' },
         {
