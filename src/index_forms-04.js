@@ -46,13 +46,6 @@ function AddPetForm (props) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.pets = [
-            { name: "Meowsalot", species: "cat", age: "5", id: 123456789 },
-            { name: "Barksalot", species: "dog", age: "3", id: 987654321 },
-            { name: "Fluffy", species: "rabbit", age: "2", id: 123123123 },
-            { name: "Purrsloud", species: "cat", age: "1", id: 456456456 },
-            { name: "Paws", species: "dog", age: "6", id: 789789789 }
-        ];
 //        this.onMove = this.onMove.bind(this);
 //        this.testVarible= "this is a test";
     }
@@ -64,7 +57,7 @@ class App extends React.Component {
                 <TimeArea />
                 <AddPetForm />
                 <ul>
-                    {this.pets.map(pet => <Pet name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)}
+                    {this.props.pets.map(pet => <Pet id={pet.id} name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)}
                 </ul>
             </>
         );
@@ -72,7 +65,23 @@ class App extends React.Component {
 }
 
 function Pet (props) {
-    return <li> The {props.name} is a {props.species} and {props.age} is year old. </li>;
+    const [pets, setPets] = useState([
+        { name: "Meowsalot", species: "cat", age: "5", id: 123456789 },
+        { name: "Barksalot", species: "dog", age: "3", id: 987654321 },
+        { name: "Fluffy", species: "rabbit", age: "2", id: 123123123 },
+        { name: "Purrsloud", species: "cat", age: "1", id: 456456456 },
+        { name: "Paws", species: "dog", age: "6", id: 789789789 }
+    ]);
+    function handleDelete () {
+        props.setPets(prev => prev.filter(pet => pet.id != props.id));
+    }
+    return (
+        <li>
+        The {props.name} is a {props.species} and {props.age} is year old.
+        <button onClick={handleDelete}> Delete </button>
+        </li>
+    );
 }
+
 
 ReactDOM.render(<App />, document.getElementById("root"));
