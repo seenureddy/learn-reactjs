@@ -43,28 +43,8 @@ function AddPetForm (props) {
     );
 }
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-//        this.onMove = this.onMove.bind(this);
-//        this.testVarible= "this is a test";
-    }
+function App () {
 
-    render () {
-        return (
-            <>
-                <OurHeader />
-                <TimeArea />
-                <AddPetForm />
-                <ul>
-                    {this.props.pets.map(pet => <Pet id={pet.id} name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)}
-                </ul>
-            </>
-        );
-    }
-}
-
-function Pet (props) {
     const [pets, setPets] = useState([
         { name: "Meowsalot", species: "cat", age: "5", id: 123456789 },
         { name: "Barksalot", species: "dog", age: "3", id: 987654321 },
@@ -72,6 +52,20 @@ function Pet (props) {
         { name: "Purrsloud", species: "cat", age: "1", id: 456456456 },
         { name: "Paws", species: "dog", age: "6", id: 789789789 }
     ]);
+
+    return (
+        <>
+            <OurHeader />
+            <TimeArea />
+            <AddPetForm setPets={setPets} />
+            <ul>
+                {pets.map(pet => <Pet id={pet.id} name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)}
+            </ul>
+        </>
+    );
+}
+
+function Pet (props) {
     function handleDelete () {
         props.setPets(prev => prev.filter(pet => pet.id != props.id));
     }
