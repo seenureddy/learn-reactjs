@@ -59,7 +59,7 @@ function App () {
             <TimeArea />
             <AddPetForm setPets={setPets} />
             <ul>
-                {pets.map(pet => <Pet id={pet.id} name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)}
+                {pets.map(pet => <Pet setPets={setPets} id={pet.id} name={pet.name} species={pet.species} age={pet.age} key={pet.id} />)}
             </ul>
         </>
     );
